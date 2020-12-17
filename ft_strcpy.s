@@ -1,20 +1,18 @@
-section .text
+section.text:
 	global _ft_strcpy
 
 _ft_strcpy:
-	mov	rcx, 0
-	mov rbx, 0
-	cmp rsi, 0
-	je	exit
-
-copy:
-	mov bl, byte [rsi + rcx]
-	mov byte [rdi + rcx], bl
-	inc rcx
-	cmp bl, 0
-	je	exit
-	jmp copy
-
-exit:
-	mov rax, rdi
-	ret
+	push	rbx
+	push	rcx
+	mov		rax, rdi
+	mov		rbx, rsi
+	mov		rcx, -1
+	_loop:
+		inc		rcx
+		mov		dl, byte [rbx + rcx]
+		mov		byte [rax + rcx], dl
+		cmp		byte [rbx + rcx], 0
+		jnz		_loop
+		pop		rcx
+		pop		rbx
+		ret

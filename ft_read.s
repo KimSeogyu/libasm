@@ -1,17 +1,18 @@
-section .text
+section.text:
 	global _ft_read
 	extern ___error
 
 _ft_read:
-	mov rax, 0x2000003
+	mov 	rax, 0x2000003
 	syscall
-	jc _err
+	jc		_error
 	ret
 
-_err:
-	push rax
-	call ___error
-	pop rdx
-	mov [rax], rdx
-	mov rax, -1
+_error:
+	push	rax
+	call	___error
+	mov 	rdi, rax
+	pop		rax
+	mov		[rdi], rax
+	mov		rax, -1
 	ret

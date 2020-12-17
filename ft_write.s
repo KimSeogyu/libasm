@@ -1,6 +1,3 @@
-;ssize_t		ft_write(int fildes, const void *buf, size_t nbyte);
-
-
 section.text:
 	global _ft_write
 	extern ___error
